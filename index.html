@@ -12,9 +12,10 @@
 
   <!-- BibTeX JS -->
   <script src="bibtex_js.js" type="text/javascript" charset="utf-8"></script>
+
+  <!-- Load BibTeX -->
   <bibtex src="ref.bib"></bibtex>
 
-  <!-- Style -->
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -31,27 +32,15 @@
     .bibtex_structure {
       padding-left: 1rem;
       border-left: 4px solid #FFCB05;
-      margin-bottom: 2rem;
-    }
-
-    .searchbar {
-      margin: 1rem 0;
-    }
-
-    .searchbar select,
-    .searchbar input {
-      margin-right: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .bibtex_template {
       margin-bottom: 1.5rem;
     }
 
-    pre {
-      background: #eee;
-      padding: 0.75em;
-      border-radius: 4px;
+    .searchbar {
+      margin: 1rem 0;
     }
 
     .collapse-toggle {
@@ -60,42 +49,46 @@
       color: #0066cc;
     }
 
-    .author, .title, .booktitle, .year, .journal {
-      display: inline;
+    pre {
+      background: #eee;
+      padding: 0.75em;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body>
-
   <h1>References</h1>
 
   <div class="searchbar">
     <input type="text" class="bibtex_search form-control" style="display:inline-block; width:auto;" id="searchbar" placeholder="Search publications..." />
   </div>
 
-  <!-- BibTeX display -->
   <div class="bibtex_structure">
-    <div id="bibtex_display">
-      <div class="bibtex_template" style="display: none;">
-        <ul>
-          <li>
-            <span class="if author"><span class="author"></span>. </span>
-            <span class="if title"><strong><span class="title"></span>.</strong> </span>
-            <span class="if booktitle">In <em><span class="booktitle"></span></em>, </span>
-            <span class="if journal"><em><span class="journal"></span></em>, </span>
-            <span class="if year"><span class="year"></span>. </span>
-            <a class="bibtexVar collapse-toggle" role="button" data-toggle="collapse" href="#bib+BIBTEXKEY+" aria-expanded="false" aria-controls="bib+BIBTEXKEY+" extra="BIBTEXKEY">[bib]</a>
-
-            <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
-              <div class="well">
-                <pre><span class="bibtexraw noread"></span></pre>
-              </div>
-            </div>
-          </li>
-        </ul>
+    <div class="group year" extra="DESC number">
+      <div class="sort year" extra="DESC number">
+        <div class="templates"></div>
       </div>
     </div>
   </div>
 
+  <div id="bibtex_display">
+    <div class="bibtex_template" style="display: none;">
+      <ul>
+        <li>
+          <span class="if author"><span class="author"></span>. </span>
+          <span class="if title"><strong><span class="title"></span>.</strong> </span>
+          <span class="if booktitle">In <em><span class="booktitle"></span></em>, </span>
+          <span class="if journal"><em><span class="journal"></span></em>, </span>
+          <span class="if year"><span class="year"></span>.</span>
+          <span class="if publisher"><span class="publisher"></span>.</span>
+          <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
+            <div class="well">
+              <pre><span class="bibtexraw noread"></span></pre>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>
