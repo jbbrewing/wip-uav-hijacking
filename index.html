@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>References – Hijacking UAVs</title>
+  <script src="https://cdn.jsdelivr.net/npm/bibtex-js@1.0.1/bibtex.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      background: #f9f9f9;
+    }
+    h1 {
+      color: #00274C;
+    }
+    .bibtex_structure {
+      padding-left: 1rem;
+      border-left: 4px solid #FFCB05;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>References</h1>
+
+  <div class="bibtex_structure">
+    <div class="bibtex_template">
+      <div>
+        <span class="if author">
+          <span class="author"></span>.
+        </span>
+        <span class="if title">
+          <strong><span class="title"></span>.</strong>
+        </span>
+        <span class="if booktitle">
+          In <span class="booktitle"></span>,
+        </span>
+        <span class="if year">
+          <span class="year"></span>.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div id="bibtex_display"></div>
+
+  <bibtex src="refs.bib"></bibtex>
+
+</body>
+</html>
