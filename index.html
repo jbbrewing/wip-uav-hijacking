@@ -10,7 +10,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <!-- BibTeX JS from CDN -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/pcooksey/bibtex-js@1.0.0/src/bibtex_js.min.js"></script>
+  
   <bibtex src="ref.bib"></bibtex>
+
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -46,6 +48,10 @@
       margin-left: 1em;
       cursor: pointer;
       color: #0066cc;
+      text-decoration: underline;
+    }
+    .collapse-toggle:hover {
+      color: #004499;
     }
     pre {
       background: #eee;
@@ -53,11 +59,21 @@
       border-radius: 4px;
       font-size: 0.85em;
     }
+    .author-display {
+      font-weight: 500;
+    }
+    .bibtex-section {
+      margin-top: 0.5em;
+      display: none;
+    }
+    .bibtex-section.show {
+      display: block;
+    }
   </style>
 </head>
 <body>
   <h1>References</h1>
-  
+ 
   <div class="searchbar">
     <input type="text" class="bibtex_search form-control" style="display:inline-block; width:auto;" placeholder="Search publications..." />
   </div>
@@ -70,14 +86,26 @@
           <div class="bibtex_template">
             <ul>
               <li>
-                <span class="if author"><span class="author"></span>. </span>
-                <span class="if title"><strong><span class="title"></span>.</strong> </span>
+                <span class="if title">
+                    <strong>
+                        <span class="title"></span>
+                    </strong>
+                </span>
+                <div class="if author">
+                    <span class="author"></span>
+                </div>
                 <span class="if journal"><em><span class="journal"></span></em><span class="if volume">, vol. <span class="volume"></span></span><span class="if number">, no. <span class="number"></span></span><span class="if pages">, pp. <span class="pages"></span></span>, </span>
                 <span class="if booktitle">In <em><span class="booktitle"></span></em><span class="if pages">, pp. <span class="pages"></span></span>, </span>
                 <span class="if year"><span class="year"></span>.</span>
                 <span class="if publisher"> <span class="publisher"></span>.</span>
                 <span class="if organization"> <span class="organization"></span>.</span>
-                <span class="if url"> <span class="url"></span>.</span>
+                <span class="if howpublished"> <span class="howpublished"></span>.</span>
+                <span class="collapse-toggle" onclick="toggleBibtex(this)">[BibTeX]</span>
+                <div class="bibtex-section">
+                  <div class="well">
+                    <pre><span class="bibtexraw noread"></span></pre>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
@@ -85,6 +113,18 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // Function to toggle individual BibTeX sections
+    function toggleBibtex(element) {
+      const section = element.nextElementSibling;
+      if (section.style.display === 'none' || section.style.display === '') {
+        section.style.display = 'block';
+      } else {
+        section.style.display = 'none';
+      }
+    }
+  </script>
 
 </body>
 </html>
