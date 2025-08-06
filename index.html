@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>References – Hijacking UAVs</title>
-  <script src="https://cdn.jsdelivr.net/npm/bibtex-js@1.0.1/bibtex.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- jQuery + Bootstrap -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <!-- BibTeX JS -->
+  <script src="bibtex_js.js" type="text/javascript" charset="utf-8"></script>
+  <bibtex src="ref.bib"></bibtex>
+
+  <!-- Style -->
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -12,13 +23,41 @@
       margin: auto;
       background: #f9f9f9;
     }
+
     h1 {
       color: #00274C;
     }
+
     .bibtex_structure {
       padding-left: 1rem;
       border-left: 4px solid #FFCB05;
       margin-bottom: 1.5rem;
+    }
+
+    .searchbar {
+      margin: 1rem 0;
+    }
+
+    .searchbar select,
+    .searchbar input {
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .bibtex_template {
+      margin-bottom: 1.5rem;
+    }
+
+    pre {
+      background: #eee;
+      padding: 0.75em;
+      border-radius: 4px;
+    }
+
+    .collapse-toggle {
+      margin-left: 1em;
+      cursor: pointer;
+      color: #0066cc;
     }
   </style>
 </head>
@@ -26,28 +65,54 @@
 
   <h1>References</h1>
 
+  <div class="searchbar">
+    <select class="bibtex_search bibtex_author btn btn-default" search="author">
+      <option value="">Filter by Author</option>
+    </select>
+
+    <select class="bibtex_search btn btn-default" search="year">
+      <option value="">Filter by Year</option>
+    </select>
+
+    <select class="bibtex_search btn btn-default" search="booktitle">
+      <option value="">Filter by Venue</option>
+    </select>
+
+    <input type="text" class="bibtex_search form-control" style="display:inline-block; width:auto;" id="searchbar" placeholder="Search publications..." />
+  </div>
+
   <div class="bibtex_structure">
-    <div class="bibtex_template">
-      <div>
-        <span class="if author">
-          <span class="author"></span>.
-        </span>
-        <span class="if title">
-          <strong><span class="title"></span>.</strong>
-        </span>
-        <span class="if booktitle">
-          In <span class="booktitle"></span>,
-        </span>
-        <span class="if year">
-          <span class="year"></span>.
-        </span>
+    <div class="group year" extra="DESC number">
+      <div class="sort year" extra="DESC number">
+        <div class="templates"></div>
       </div>
     </div>
   </div>
 
-  <div id="bibtex_display"></div>
+  <div id="bibtex_display">
+    <div class="bibtex_template" style="display: none;">
+      <ul>
+        <li>
+          <span class="if author">
+            <span class="author"></span>.
+          </span>
+          <span class="if title">
+            <strong><span class="title"></span>.</strong>
+          </span>
+          <span class="if booktitle"> In <em><span class="booktitle"></span></em>,</span>
+          <span class="if journal"><em><span class="journal"></span></em>,</span>
+          <span class="if year"> <span class="year"></span>.</span>
+          <a class="bibtexVar collapse-toggle" role="button" data-toggle="collapse" href="#bib+BIBTEXKEY+" aria-expanded="false" aria-controls="bib+BIBTEXKEY+" extra="BIBTEXKEY">[bib]</a>
 
-  <bibtex src="ref.bib"></bibtex>
+          <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
+            <div class="well">
+              <pre><span class="bibtexraw noread"></span></pre>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 
 </body>
 </html>
