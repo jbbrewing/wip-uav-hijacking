@@ -8,9 +8,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <!-- BibTeX JS -->
-  <script src="bibtex_js.js" type="text/javascript" charset="utf-8"></script>
-  <!-- Load BibTeX -->
+  <!-- BibTeX JS from CDN -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/pcooksey/bibtex-js@1.0.0/src/bibtex_js.min.js"></script>
   <bibtex src="ref.bib"></bibtex>
   <style>
     body {
@@ -23,13 +22,22 @@
     h1 {
       color: #00274C;
     }
-    .bibtex_structure {
+    #bibtex_display {
       padding-left: 1rem;
       border-left: 4px solid #FFCB05;
       margin-bottom: 1.5rem;
     }
     .bibtex_template {
       margin-bottom: 1.5rem;
+    }
+    .bibtex_template li {
+      list-style: none;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .bibtex_template ul {
+      padding-left: 0;
     }
     .searchbar {
       margin: 1rem 0;
@@ -43,37 +51,45 @@
       background: #eee;
       padding: 0.75em;
       border-radius: 4px;
+      font-size: 0.85em;
     }
   </style>
 </head>
 <body>
   <h1>References</h1>
-  <div class="searchbar">
-    <input type="text" class="bibtex_search form-control" style="display:inline-block; width:auto;" id="searchbar" placeholder="Search publications..." />
-  </div>
   
-  <div class="bibtex_structure">
-    <div class="templates"></div>
+  <div class="searchbar">
+    <input type="text" class="bibtex_search form-control" style="display:inline-block; width:auto;" placeholder="Search publications..." />
   </div>
 
+  <!-- This is where the formatted bibliography will appear -->
   <div id="bibtex_display">
-    <div class="bibtex_template" style="display: none;">
-      <ul>
-        <li>
-          <span class="if author"><span class="author"></span>. </span>
-          <span class="if title"><strong><span class="title"></span>.</strong> </span>
-          <span class="if booktitle">In <em><span class="booktitle"></span></em>, </span>
-          <span class="if journal"><em><span class="journal"></span></em>, </span>
-          <span class="if year"><span class="year"></span>.</span>
-          <span class="if publisher"><span class="publisher"></span>.</span>
-          <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
-            <div class="well">
-              <pre><span class="bibtexraw noread"></span></pre>
-            </div>
+    <div class="bibtex_structure">
+      <div class="sort year" extra="DESC number">
+        <div class="templates">
+          <div class="bibtex_template">
+            <ul>
+              <li>
+                <span class="if author"><span class="author"></span>. </span>
+                <span class="if title"><strong><span class="title"></span>.</strong> </span>
+                <span class="if journal"><em><span class="journal"></span></em><span class="if volume">, vol. <span class="volume"></span></span><span class="if number">, no. <span class="number"></span></span><span class="if pages">, pp. <span class="pages"></span></span>, </span>
+                <span class="if booktitle">In <em><span class="booktitle"></span></em><span class="if pages">, pp. <span class="pages"></span></span>, </span>
+                <span class="if year"><span class="year"></span>.</span>
+                <span class="if publisher"> <span class="publisher"></span>.</span>
+                <span class="if organization"> <span class="organization"></span>.</span>
+                <a class="collapse-toggle" data-toggle="collapse" href="#bib+BIBTEXKEY+">[BibTeX]</a>
+                <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
+                  <div class="well">
+                    <pre><span class="bibtexraw noread"></span></pre>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
+
 </body>
 </html>
