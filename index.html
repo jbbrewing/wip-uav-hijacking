@@ -31,7 +31,7 @@
     .bibtex_structure {
       padding-left: 1rem;
       border-left: 4px solid #FFCB05;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .searchbar {
@@ -59,6 +59,10 @@
       cursor: pointer;
       color: #0066cc;
     }
+
+    .author, .title, .booktitle, .year, .journal {
+      display: inline;
+    }
   </style>
 </head>
 <body>
@@ -69,36 +73,27 @@
     <input type="text" class="bibtex_search form-control" style="display:inline-block; width:auto;" id="searchbar" placeholder="Search publications..." />
   </div>
 
+  <!-- BibTeX display -->
   <div class="bibtex_structure">
-    <div class="group year" extra="DESC number">
-      <div class="sort year" extra="DESC number">
-        <div class="templates"></div>
-      </div>
-    </div>
-  </div>
+    <div id="bibtex_display">
+      <div class="bibtex_template" style="display: none;">
+        <ul>
+          <li>
+            <span class="if author"><span class="author"></span>. </span>
+            <span class="if title"><strong><span class="title"></span>.</strong> </span>
+            <span class="if booktitle">In <em><span class="booktitle"></span></em>, </span>
+            <span class="if journal"><em><span class="journal"></span></em>, </span>
+            <span class="if year"><span class="year"></span>. </span>
+            <a class="bibtexVar collapse-toggle" role="button" data-toggle="collapse" href="#bib+BIBTEXKEY+" aria-expanded="false" aria-controls="bib+BIBTEXKEY+" extra="BIBTEXKEY">[bib]</a>
 
-  <div id="bibtex_display">
-    <div class="bibtex_template" style="display: none;">
-      <ul>
-        <li>
-          <span class="if author">
-            <span class="author"></span>.
-          </span>
-          <span class="if title">
-            <strong><span class="title"></span>.</strong>
-          </span>
-          <span class="if booktitle"> In <em><span class="booktitle"></span></em>,</span>
-          <span class="if journal"><em><span class="journal"></span></em>,</span>
-          <span class="if year"> <span class="year"></span>.</span>
-          <a class="bibtexVar collapse-toggle" role="button" data-toggle="collapse" href="#bib+BIBTEXKEY+" aria-expanded="false" aria-controls="bib+BIBTEXKEY+" extra="BIBTEXKEY">[bib]</a>
-
-          <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
-            <div class="well">
-              <pre><span class="bibtexraw noread"></span></pre>
+            <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
+              <div class="well">
+                <pre><span class="bibtexraw noread"></span></pre>
+              </div>
             </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 
